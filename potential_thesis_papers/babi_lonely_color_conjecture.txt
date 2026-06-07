@@ -1,0 +1,16 @@
+Kleuren van de edges waarbij de constraint is:
+  - Een cykel heeft nooit maar een edge van een kleur, altijd of 0 van dezelfde kleur of 2+ van dezelfde kleur
+  - Elk punt heeft nooit meer dan 2 edges van dezelfde kleur
+
+het no-lonely-color-graphs.
+
+De paper praat erover dat in 1978 er geconjectured werd dat voor zulke grafen het houdt dat als je de punten probeert te kleuren,
+het minimaal aantal kleuren dat je nodig hebt voor elke mogelijke graaf altijd lager dan of gelijk aan is dan een specifieke constante C.
+
+In 2024 is er een andere paper die conjectured dat grafen die proper edge-colored zijn, elk punt heeft max maar een van elke kleur edge aan zich vastzitten,
+waar elke cykel nooit maar een edge van een kleur heeft, altijd of 0 van dezelfde kleur of 2+ van dezelfde kleur,
+het minimaal aantal kleuren dat je nodig hebt voor elke mogelijke graaf altijd lager dan of gelijk aan is dan een specifieke constante C.
+
+Deze paper disproved beide deze stellingen, en laat zien dat dit geldt voor grafen met arbitrair grote cykels (alsin de kleinste cykel is gigantisch).
+
+Er is dus history om over te praten (twee verschillende papers).
