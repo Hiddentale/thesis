@@ -1,0 +1,1 @@
+Notation for turan number: ex(n, H) means that we try to find the maximum possible graph of n vertices, where no subgraph is isomorphic to H.
