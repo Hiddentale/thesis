@@ -1,1 +1,16 @@
-Notation for turan number: ex(n, H) means that we try to find the maximum possible graph of n vertices, where no subgraph is isomorphic to H.
+Has 12 pages filled with dense theorems/proofs, definitely enough material to write about especially since this paper is
+from 2021 and has open questions at the end. Hence there might be follow-ups.
+
+Notation for turan number: ex(n, H) means that we try to find the maximum possible(as in # of edges) graph of n vertices,
+where no subgraph is isomorphic to H.
+
+2-degenerate means that if we keep removing vertices of degree 2 or less from the graph, we eventually succesfully
+remove all vertices and no graph is left. If we eventuallyget a non-empty subgraph where every vertex is of degree
+3 or higher, our initial graph is not 2-degenerate.
+
+So basically, the conjecture that is being disproved in this paper is that:
+If our bipartite H-graph is 2 degenerate, then the maximum number of edges we can have on our n-vertices graph,
+where no subgraph can be exactly the same as H, has a worst-case bound of O(n^{3/2}) and vice-versa.
+
+The paper only disproves the only if direction: If not 2-degenerate --> ex(n, H) = w(n^{3/2})
+They give a counterexample bipartite H that is not 2-degenerate yet it still satisfies ex(n, H) = O(n^{3/2})
