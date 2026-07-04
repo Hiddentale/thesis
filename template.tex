@@ -31,83 +31,12 @@
 \begin{abstract}
     In this paper, after a short historic introduction, we focus on proving the Cayley-Hamilton theorem and explaining its consequences. This is achieved by first refreshing our memory regarding some fundamental concepts in Linear Algebra, whereafter we prove two distinct theorems, which we will use for the subsequent proof. Finally, the paper explores the implications of the Cayley-Hamilton theorem, offering an understanding of its practical applications and theoretical significance.
 \end{abstract}
-
+\section{AI/Data usage}
 \section{Introduction}
-    \subsection*{Where it began}
-        On the 10th of December, 1857, an article \cite{Cayley} by Arthur Cayley arrived at the Royal Society, a publisher of scientific journals. This document contained the first steps into Matrix Algebra, nowadays a very powerful mathematical tool, which is used in various applications in for example Control Theory and Machine Learning \cite{Machine_Learning}. One of the key theorems introduced in this article is the now-called Cayley-Hamilton Theorem, so named because a special case of this theorem was proven earlier, in 1853, by William Hamilton \cite{hamilton}.\par
-        
-        After a concise introduction of this theorem, we will elaborate on some of the prerequisites, give a proof of this famous theorem, and finally, end this paper with some of its consequences for modern mathematics.
-    \subsection*{The gist}
-        The Cayley-Hamilton Theorem only applies to square matrices, which are matrices whose length and width are equal, e.g. 
-        $$\underbrace{\begin{pmatrix}
-            a_{11} & a_{12} & a_{13}\\ 
-            a_{21} & a_{22} & a_{23}\\
-            a_{31} & a_{32} & a_{33} 
-        \end{pmatrix}}_{\text{Square}}\quad \quad \quad
-        \underbrace{\begin{pmatrix}
-            b_{11} & b_{12} & b_{13}\\ 
-            b_{21} & b_{22} & b_{23} 
-        \end{pmatrix}}_{\text{Non square}}$$
-        The usefulness of matrices with this characteristic cannot be understated: They represent a set of linear equations that has the same amount of equations as unknowns, thus increasing the likelihood of finding a solution.\par
-        Cayley-Hamilton's theorem states that, for any square matrix, if we put this matrix in its own characteristic polynomial, the result will always equal a zero-matrix.
-        What this means in practice, is that, since the characteristic polynomial encodes important information about eigenvectors and their eigenvalues, these properties will be less arduous to find.\par
-        Since eigenvectors allow us to diagonalize matrices, more on that later, they severely remove some of the complexities of solving matrix calculations. Consequently since solving matrices is used in any field that utilizes multiple linear equations, and since Linear Algebra was created to solve sets of linear equations easier, it is not stated lightly that this theorem really stands as a pillar on which Linear Algebra thrives.\par
-        Now for a concrete example, let
-        $$ A = {\begin{pmatrix}
-            7 & 2 \\ 
-            1 & 5
-        \end{pmatrix}}.$$
-        \label{char}
-        Then by definition, the characteristic polynomial, more on this \hyperref[polynomial]{later}, of \(A\) can be written as 
-        $$f(A) = \det(A-I_2\lambda) = \det\begin{pmatrix}
-            7-\lambda & 2 \\ 
-            1 & 5 - \lambda
-        \end{pmatrix} = \lambda^2 - 12\lambda + 33, $$ where $$I_2 = \begin{pmatrix}
-            1 & 0 \\ 
-            0 & 1
-        \end{pmatrix}.$$
-        Then the Cayley-Hamilton Theorem tells us that $$A^2 -12A + 33I_2 = 0,$$
-        which we can easily check, $$ {\begin{pmatrix}
-            7 & 2 \\ 
-            1 & 5
-        \end{pmatrix}}^2 - 12 {\begin{pmatrix}
-            7 & 2 \\ 
-            1 & 5
-        \end{pmatrix}} + {\begin{pmatrix}
-            33 & 0 \\ 
-            0 & 33
-        \end{pmatrix}} = {\begin{pmatrix}
-            51 & 24 \\ 
-            12 & 27
-        \end{pmatrix}} - {\begin{pmatrix}
-            84 & 24 \\ 
-            12 & 60
-        \end{pmatrix}}
-        + {\begin{pmatrix}
-            33 & 0 \\ 
-            0 & 33
-        \end{pmatrix}} = {\begin{pmatrix}
-            0 & 0 \\ 
-            0 & 0
-        \end{pmatrix}}.$$\par
-        A formal representation of this theorem is obviously due:
-        \begin{theorem} \label{theorem 1.1} (see e.g. \cite[p.~317]{Insel})
-            Let \(T\) be a linear operator on a finite-dimensional vector space \(V\), and let \(f(t)\) be the characteristic polynomial of \(T\). Then \(f(T) = 0\), the zero transformation .\par
-        \end{theorem}
-        
-        To prove this, we will use a combination of \(T\)-Cyclic subspaces and two separate theorems that we will on elaborate later, to show that \(f(T)(v) = 0\) for all \(v \in V\).
-
-\section{Prerequisites about Linear Algebra}
-    To understand parts of the proof of the Cayley-Hamilton Theorem, we will have to define and explain some fundamental concepts beforehand.
+\section{Prerequisites}
+    To understand parts of the disproof of the - Theorem, we will have to define and explain some fundamental concepts beforehand.
     
-    \subsection{Linear Operators}
-        Linear Operators are what their name implies. They represent a mapping, from a space to itself, that is linear in its nature.\par
-        \begin{definition}
-             Let \(V\) be a vector space, then any mapping \(T:V\longrightarrow V\) where \(T(av_1 + bv_2) = aT(v_1) + bT(v_2)\) with \(a, b \in \mathbb{R}\) and \(v_1, v_2 \in V\) can be called a linear operator \cite[p.~112]{Insel}.
-        \end{definition}
-        We define the matrix representation of \(T\) relative to an ordered basis \(\beta\), by the notation
-        \([T]_\beta\).
-        
+    \subsection{Cayley Graphs}
     \subsection{Eigenvectors and their eigenvalues}
         
         \begin{definition}
