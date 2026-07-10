@@ -38,8 +38,9 @@
     \textit{Give me standalone TikZ code for a Venn-style containment diagram: one large circle labeled 'no-lonely-colour graphs' fully containing a smaller circle labeled 'minimal Cayley graphs', 
     to show the proper-subset relationship. Use plain black outlines, light gray fill on the inner circle, and make sure the outer label doesn't overlap the inner circle. Compile it to check it renders before sending it to me.}
 \section{Introduction}
+    No-lonely-colored graphs have quite strict requirements set upon their structure. Are these constraints sufficient enough to bound the chromatic number of the graph?
 \section{Prerequisites}
-    The prime question originall asked by Babai is basically: Is the chromatic number of a graph bounded whenever a no-lonely-colored edge coloring exists?
+    The prime question originally asked by Babai is basically: Is the chromatic number of a graph bounded whenever a no-lonely-colored edge coloring exists?
     Interesting to see that in 1995 Babai actually changed his ideas, he conjectured that: If our graph is no-lonely-colored, we can't say anything about the chromatic number.
     
     \subsection{Cayley Graphs}
@@ -82,8 +83,46 @@
     We know from the paper that no-lonely colored graphs do not have a bounded chromatic number, but what about minimal cayley graphs?
 
 
-\section{a}
-   
+\section{New concepts}
+Stable/independent sets, Perfect matchings, Blanche Descartes/Tutte construction\\
+Go deeper into how this construction works/gain intuition\\
+\begin{tikzpicture}[
+  s/.style={circle,draw,fill=blue!20,minimum size=7mm,font=\small},
+  d/.style={circle,draw,fill=orange!20,minimum size=7mm,font=\small},
+  every edge/.style={thick}
+]
+
+% --- S: the stable set (hub), no edges among these three ---
+\node[s] (s1) at (0,4)  {$s_1$};
+\node[s] (s2) at (3,4)  {$s_2$};
+\node[s] (s3) at (6,4)  {$s_3$};
+
+% --- Copy 1 of D_2, attached to T1 = {s1,s2} ---
+\node[d] (u1) at (0,1) {$u_1$};
+\node[d] (v1) at (1.5,1) {$v_1$};
+\draw (u1) -- (v1);              % internal edge of D_2-copy 1
+\draw (s1) -- (u1);               % matching edge
+\draw (s2) -- (v1);               % matching edge
+
+% --- Copy 2 of D_2, attached to T2 = {s1,s3} ---
+\node[d] (u2) at (3,1) {$u_2$};
+\node[d] (v2) at (4.5,1) {$v_2$};
+\draw (u2) -- (v2);
+\draw (s1) -- (u2);
+\draw (s3) -- (v2);
+
+% --- Copy 3 of D_2, attached to T3 = {s2,s3} ---
+\node[d] (u3) at (6,1) {$u_3$};
+\node[d] (v3) at (7.5,1) {$v_3$};
+\draw (u3) -- (v3);
+\draw (s2) -- (u3);
+\draw (s3) -- (v3);
+
+% --- Labels ---
+\node at (-2,4) {\normalsize $S$ (stable, $|S|=3$):};
+\node at (-2,1) {\normalsize three $D_2$-copies:};
+
+\end{tikzpicture}
 
 \section{b}
 
