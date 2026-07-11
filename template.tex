@@ -70,6 +70,14 @@
         Babai conjectured that there is some link between coloring the edges and coloring the vertices, where if we constrain the coloring of the edges, that also constraints the independent coloring of the vertices. This is quite surprising (for now), since
         I don't see right away what link there would be between these two concepts. It is evident that some kind of regularity is induced by no-lonely-coloring of graphs, hence it seems most likely the case that Babai's intuition about this regularity gave him
         the idea that these constraints adjust what possible graphs can be created so much that it induces a bounded chromatic number. Might this have to do with minimal Cayley Graphs?
+    \subsection{Hypergraphs}
+        Generalization of graphs. Instead of edges connecting vertices, we construct blobs around vertices and all those vertices are connected to each other. Hence a hypergraph where each blob/hyperedge is of size 2 (only has 2 vertices) is just a normal graph.
+    \subsection{Auxiliary Hypergraphs}
+        A proof technique where, wanting to prove something about a certain Graph G and having some difficulties with that, we construct a new hypergraph whose vertices and hyperedges are chosen in such a way that some property of this axuiliary hypergraph
+        is equivalent too or implies the thing we wanted to prove about G. After proving that easier statement for the hypergraph we translate it back to G to prove our initial conjecture on G. Holds a lot of similarity to auxiliary functions in analysis.
+    \subsection{Tranquil Hypergraphs}
+    \subsection{Bridge}
+        A bridge is a specific edge in a graph G where if removing that edge from the graph results in a connected component being split into multiple smaller connected components and hence the total # of connected components increasing.
     \subsection{Temp}
     \begin{tikzpicture}[font=\sffamily]
  
@@ -87,42 +95,37 @@
 Stable/independent sets, Perfect matchings, Blanche Descartes/Tutte construction\\
 Go deeper into how this construction works/gain intuition\\
 \begin{tikzpicture}[
-  s/.style={circle,draw,fill=blue!20,minimum size=7mm,font=\small},
-  d/.style={circle,draw,fill=orange!20,minimum size=7mm,font=\small},
+  c1/.style={circle,draw,fill=red!40,minimum size=8mm,font=\small\bfseries},
+  c2/.style={circle,draw,fill=green!40,minimum size=8mm,font=\small\bfseries},
+  c3/.style={circle,draw,fill=blue!30,minimum size=8mm,font=\small\bfseries},
   every edge/.style={thick}
 ]
-
-% --- S: the stable set (hub), no edges among these three ---
-\node[s] (s1) at (0,4)  {$s_1$};
-\node[s] (s2) at (3,4)  {$s_2$};
-\node[s] (s3) at (6,4)  {$s_3$};
-
-% --- Copy 1 of D_2, attached to T1 = {s1,s2} ---
-\node[d] (u1) at (0,1) {$u_1$};
-\node[d] (v1) at (1.5,1) {$v_1$};
-\draw (u1) -- (v1);              % internal edge of D_2-copy 1
-\draw (s1) -- (u1);               % matching edge
-\draw (s2) -- (v1);               % matching edge
-
-% --- Copy 2 of D_2, attached to T2 = {s1,s3} ---
-\node[d] (u2) at (3,1) {$u_2$};
-\node[d] (v2) at (4.5,1) {$v_2$};
+\node[c1] (s1) at (0,4)  {$s_1$};
+\node[c1] (s2) at (3,4)  {$s_2$};
+\node[c1] (s3) at (6,4)  {$s_3$};
+ 
+\node[c2] (u1) at (0,1) {$u_1$};
+\node[c3] (v1) at (1.5,1) {$v_1$};
+\draw (u1) -- (v1);
+\draw (s1) -- (u1);
+\draw (s2) -- (v1);
+ 
+\node[c2] (u2) at (3,1) {$u_2$};
+\node[c3] (v2) at (4.5,1) {$v_2$};
 \draw (u2) -- (v2);
 \draw (s1) -- (u2);
 \draw (s3) -- (v2);
-
-% --- Copy 3 of D_2, attached to T3 = {s2,s3} ---
-\node[d] (u3) at (6,1) {$u_3$};
-\node[d] (v3) at (7.5,1) {$v_3$};
+ 
+\node[c2] (u3) at (6,1) {$u_3$};
+\node[c3] (v3) at (7.5,1) {$v_3$};
 \draw (u3) -- (v3);
 \draw (s2) -- (u3);
 \draw (s3) -- (v3);
-
-% --- Labels ---
-\node at (-2,4) {\normalsize $S$ (stable, $|S|=3$):};
-\node at (-2,1) {\normalsize three $D_2$-copies:};
-
+ 
+\node at (-2.3,4) {$S$:};
+\node at (-2.3,1) {copies of $D_2$:};
 \end{tikzpicture}
+
 
 \section{b}
 
