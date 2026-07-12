@@ -72,13 +72,23 @@
         the idea that these constraints adjust what possible graphs can be created so much that it induces a bounded chromatic number. Might this have to do with minimal Cayley Graphs?
     \subsection{Hypergraphs}
         Generalization of graphs. Instead of edges connecting vertices, we construct blobs around vertices and all those vertices are connected to each other. Hence a hypergraph where each blob/hyperedge is of size 2 (only has 2 vertices) is just a normal graph.
+    \subsection{r-uniform Hypergraphs}
+        A hypergraph is r-uniform if every hyperedge is connected to exactly r vertices.
     \subsection{Auxiliary Hypergraphs}
         A proof technique where, wanting to prove something about a certain Graph G and having some difficulties with that, we construct a new hypergraph whose vertices and hyperedges are chosen in such a way that some property of this axuiliary hypergraph
         is equivalent too or implies the thing we wanted to prove about G. After proving that easier statement for the hypergraph we translate it back to G to prove our initial conjecture on G. Holds a lot of similarity to auxiliary functions in analysis.
-    \subsection{Tranquil Hypergraphs}
     \subsection{Bridge}
-        A bridge is a specific edge in a graph G where if removing that edge from the graph results in a connected component being split into multiple smaller connected components and hence the total # of connected components increasing.
-    \subsection{Temp}
+        A bridge is a specific edge in a graph G where if removing that edge from the graph results in a connected component being split into multiple smaller connected components and hence the total number of connected components increasing.
+    \subsection{Closed walks on a hypergraph}
+        Similar to a closed walk for a graph, but then we walk from vertex to vertex along hyperedges (which, if we recall, connects multiple vertices together), we are allowed to use each hyperedge multiple times, just not right after eachother
+    \subsection{Tranquil Hypergraphs}
+        Take a r-uniform hypergraph, and label all vertices in each hyperedge individually. So a vertex might have multiple different labels, representing different hyperedge's perspectives.
+        If one of these labeling exists, where \textit{every closed walk on the labels of the hypergraph}(quite unclear still) is bridgeless(hypergraphs do not have a concept of bridges? hence we need a labeling and induce a projection graph). 
+        Then we call our hypergraph tranquil. Definitely don't understand this properly yet
+    \subsection{}
+    \subsection{}
+    \subsection{}
+    \subsection{}
     \begin{tikzpicture}[font=\sffamily]
  
         \draw[thick] (0,0) circle (4cm);
