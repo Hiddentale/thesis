@@ -31,7 +31,7 @@
 \maketitle
 
 \begin{abstract}
-    temp
+    Will do historical perspective: where did it start, why they cared, build up why they conjectured what they conjectured (reasoning and logic behind it), then a deep dive in the disproof with a focus on visualization and helping build understanding/intuition.
 \end{abstract}
 \section{AI/Data usage}
     Used Claude to generate some TikZ's code with prompt:\\
@@ -83,8 +83,13 @@
         Similar to a closed walk for a graph, but then we walk from vertex to vertex along hyperedges (which, if we recall, connects multiple vertices together), we are allowed to use each hyperedge multiple times, just not right after eachother
     \subsection{Tranquil Hypergraphs}
         Take a r-uniform hypergraph, and label all vertices in each hyperedge individually. So a vertex might have multiple different labels, representing different hyperedge's perspectives.
-        If one of these labeling exists, where \textit{every closed walk on the labels of the hypergraph}(quite unclear still) is bridgeless(hypergraphs do not have a concept of bridges? hence we need a labeling and induce a projection graph). 
-        Then we call our hypergraph tranquil. Definitely don't understand this properly yet
+        If one of these collection of labels exists, where for every closed walk, the projection graph built by hopping from one vertex in a hyperedge to another, and hence connecting the labels of the two endpoint labels of that hop, is bridgeless.
+        Then we call our hypergraph tranquil.
+    \subsection{Monochromatic colorings}
+        This one is quite easy, a coloring is monochromatic if only one color is used.
+    \subsection{Gallai-Witt theorem}
+        Basically, no matter the given integers \(k,d\), no matter how the set \(\mathbb{Z}^d\) is colored with \(k\) colors, and no matter the finite set chosen \(T\subset\mathbb{Z}^d\), 
+        we can always find a way to scale and translate T in such a way that the result is a specific subset of points of \(\mathbb{Z}^d\) that have the same color.
     \subsection{}
     \subsection{}
     \subsection{}
