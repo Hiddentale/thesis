@@ -31,13 +31,15 @@
 \maketitle
 
 \begin{abstract}
-    Will do historical perspective: where did it start, why they cared, build up why they conjectured what they conjectured (reasoning and logic behind it), then a deep dive in the disproof with a focus on visualization and helping build understanding/intuition.
+    In Extremal Graph Theory, a conjecture by Babai was stated in 1978, and after some attempts disproven in 2024. This thesis gives a historical perspective of the conjecture: Which intuition gave rise to the conjecture, what progress was made over the years, and how exactly was it disproven. It intends to clarify the subject matter, giving a cohesive
+    and mathematical rigorous story from start to finish.
 \end{abstract}
 \section{AI/Data usage}
     Used Claude to generate some TikZ's code with prompt:\\
     \textit{Give me standalone TikZ code for a Venn-style containment diagram: one large circle labeled 'no-lonely-colour graphs' fully containing a smaller circle labeled 'minimal Cayley graphs', 
     to show the proper-subset relationship. Use plain black outlines, light gray fill on the inner circle, and make sure the outer label doesn't overlap the inner circle. Compile it to check it renders before sending it to me.}
 \section{Introduction}
+    Apparantly the motivation came from Algebraic graph theory (have to check this), the disproof use mostly ramsey theory's tools, while the main result belongs to extremal graph theory.
     The main question Babai asked was: No-lonely-colored graphs have quite strict requirements set upon their structure. Are these constraints sufficient enough to bound the chromatic number of the graph?
     The answer seems to be: No, the proof given by the paper constructs arbitrary no-lonely-colored graphs that have unbounded chromatic number.
     Interesting to see that in 1995, 17 years later, Babai actually changed his ideas. He conjectured that: If our graph is no-lonely-colored, we can't say anything about the chromatic number.
