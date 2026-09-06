@@ -7,7 +7,7 @@
 \usepackage{hyperref}
 \usepackage{polynomial}
 \usepackage{enumitem}
-\usepackage{hyperref}
+\usepackage{todonotes}
 \usepackage{tikz}
 \usetikzlibrary{calc}
 
@@ -21,7 +21,7 @@
 \newtheorem{remark}[subsection]{Remark}
 \newtheorem{example}[subsection]{Example}
 
-\title{A 50 year old conjecture, disproven \textbf{change title}}
+\title{A 50 year old conjecture, disproven \todo{change title}}
 
 \author{Johan Voskamp}
 
@@ -35,14 +35,15 @@
     and mathematical rigorous story from start to finish.
 \end{abstract}
 \section{AI/Data usage}
-    Used Claude to generate some TikZ's code with prompt:\\
+    Used Claude to generate some TikZ's code with prompt:
     \textit{Give me standalone TikZ code for a Venn-style containment diagram: one large circle labeled 'no-lonely-colour graphs' fully containing a smaller circle labeled 'minimal Cayley graphs', 
     to show the proper-subset relationship. Use plain black outlines, light gray fill on the inner circle, and make sure the outer label doesn't overlap the inner circle. Compile it to check it renders before sending it to me.}
 \section{Introduction}
-    Apparantly the motivation came from Algebraic graph theory (have to check this), the disproof use mostly ramsey theory's tools, while the main result belongs to extremal graph theory.
+    Apparently the motivation came from Algebraic graph theory (have to check this), the disproof use mostly ramsey theory's tools, while the main result belongs to extremal graph theory.
     The main question Babai asked was: No-lonely-colored graphs have quite strict requirements set upon their structure. Are these constraints sufficient enough to bound the chromatic number of the graph?
     The answer seems to be: No, the proof given by the paper constructs arbitrary no-lonely-colored graphs that have unbounded chromatic number.
     Interesting to see that in 1995, 17 years later, Babai actually changed his ideas. He conjectured that: If our graph is no-lonely-colored, we can't say anything about the chromatic number.
+    \todo{write as last}
 \section{Prerequisites}
     \subsection{Cayley Graphs}
         Take any group G, with S being a subset that generates it. Construct a graph where every vertex in the graph is an element of G, and let each edge be defined by applying elements (by right multiplication) in S to each vertex. Also color each edge based on which element from S generated it.
@@ -55,27 +56,27 @@
        So basically we assume that we have a minimal cayley graph, and then we assume that we have a lonely edge in a cycle in that graph. 
        Then by showing that that cycle can be rewritten as a product that expresses the lonely edge's generator as a product of the other generators, 
        we see that that generator is redundant and hence the cayley graph was not minimal, giving us a contradiction.
-       $$\langle S \setminus \{s\}\rangle = \langle S\rangle = \Gamma(G, S)$$
-       Hence a lonely edge can't appear in a minimal cayley graph.
-       $$[\textbf{proper proof necessary - Babai 1978}]$$
+       \[\langle S \setminus \{s\}\rangle = \langle S\rangle = \Gamma(G, S)\]
+       Hence a lonely edge can't appear in a minimal cayley graph.\cite{Babai1978}
+       \todo{proper proof necessary - Babai 1978}
 
     \subsection{No-lonely-colored graphs}
-        It is quite evident that since all Cayley graphs are no-lonely-colored graphs, that Cayley Graphs are a subset of the broader spectrum of no-lonely-colored graphs.\\
+        It is quite evident that since all Cayley graphs are no-lonely-colored graphs, that Cayley Graphs are a subset of the broader spectrum of no-lonely-colored graphs.
         \begin{tikzpicture}[font=\sffamily]
             \draw[thick] (0,0) circle (4cm);
             \node[align=center] at (0,3.3) {\textbf{no-lonely-colour graphs}};
             \draw[thick, fill=gray!10] (0,-0.5) circle (2cm);
-            \node[align=center] at (0,-0.5) {\textbf{minimal}\\\textbf{Cayley graphs}};
-        \end{tikzpicture}\\
-        $$[\textbf{give example of a no-lonely-colored graph that is not Cayley here}]$$
+            \node[align=center] at (0,-0.5) {\textbf{minimal}\textbf{Cayley graphs}};
+        \end{tikzpicture}
+        \todo{give example of a no-lonely-colored graph that is not Cayley here}
         So if we find/conjecture anything that holds for all Cayley graphs, maybe then it will be strong enough to also hold for all no-lonely-colored graphs.
     \subsection{Girth}
         The girth of a graph is just the length of the shortest possible cycle. Most of the times we use this to ask the question: How does this trait hold given that the length of the shortest possible cycle (girth) is at least some \(g\in\mathbb{R}\).
-        You basically forbid a graph from being 'locally dense'(no triangles in the grpah), hence we force the graph to look more tree-like. (find reference)
+        You basically forbid a graph from being 'locally dense'(no triangles in the grpah), hence we force the graph to look more tree-like. (/textbf{find reference})
     \subsection{Chromatic number}
         The chromatic number of a graph is the smallest number of colors needed to color the \textbf{vertices} of the graph so that no two adjacent vertices (vertices that are connected by an edge) share the same color.
     \subsection{Babai's main conjecture}
-        No-lonely-colored graphs have a bounded chromatic number (Babai 1978):\\
+        No-lonely-colored graphs have a bounded chromatic number (Babai 1978):
         Babai conjectured that there is some link between coloring the edges and coloring the vertices, where if we constrain the coloring of the edges, that also constraints the independent coloring of the vertices. This is quite surprising (for now), since
         I don't see right away what link there would be between these two concepts. It is evident that some kind of regularity is induced by no-lonely-coloring of graphs, hence it seems most likely the case that Babai's intuition about this regularity gave him
         the idea that these constraints adjust what possible graphs can be created so much that it induces a bounded chromatic number. Might this have to do with minimal Cayley Graphs?
@@ -87,22 +88,21 @@
             This is equivalent to the definition of a minimal Cayley graph, since a Cayley graph is minimal if removing any element from the set that generates it, does not generate that Cayley Graph anymore.
             Note that this does not mean that S is unique in being the smallest generating set that generates G, it just means that S is minimal with respect to the group G. There might be other generating sets that are also irreducible and hence minimal with respect to G.
         \subsubsection{Quasi-irreducible generating sets}
-            The big problem now is that the definition of irreducible generating sets falls apart for infinite groups, since we can have a generating set S that is infinite, and hence removing any element from S still leaves us with an infinite generating set that generates G. 
+            The big problem now is that the definition of irreducible generating sets falls apart for infinite groups, since we can have a generating set \(S\) that is infinite, and hence removing any element from S still leaves us with an infinite generating set that generates G. 
             Quasi-irreducible generating sets are a generalization of irreducible generating sets that also work for infinite groups. 
-            A generating set S of a group G is quasi-irreducible if removing any element from S results in a set that does not generate G anymore, 
-            unless the removed element is part of an infinite subset of S that generates G. (So the generating set is minimal with respect to the group, except for infinite subsets that generate G).
-            \\
+            A generating set \(S\) of a group \(G\) is quasi-irreducible if removing any element from S results in a set that does not generate \(G\) anymore, 
+            unless the removed element is part of an infinite subset of \(S\) that generates \(G\). (So the generating set is minimal with respect to the group, except for infinite subsets that generate G).
             Generating sets of Minimal Cayley Graphs are apparantly automatically quasi-irreducible, need to find proper reference for this.
         \subsubsection{}
     \subsection{Hypergraphs}
         Generalization of graphs. Instead of edges connecting vertices, we construct blobs around vertices and all those vertices are connected to each other. Hence a hypergraph where each blob/hyperedge is of size 2 (only has 2 vertices) is just a normal graph.
     \subsection{r-uniform Hypergraphs}
-        A hypergraph is r-uniform if every hyperedge is connected to exactly r vertices. (Quite a big constraint)
+        A hypergraph is \(r\)-uniform if every hyperedge is connected to exactly \(r\) vertices. (Quite a big constraint)
     \subsection{Auxiliary Hypergraphs}
-        A proof technique where, wanting to prove something about a certain Graph G and having some difficulties with that, we construct a new hypergraph whose vertices and hyperedges are chosen in such a way that some property of this auxiliary hypergraph
-        is equivalent too or implies the thing we wanted to prove about G. After proving that easier statement for the hypergraph we translate it back to G to prove our initial conjecture on G. Holds a lot of similarity to auxiliary functions in analysis.
+        A proof technique where, wanting to prove something about a certain Graph \(G\) and having some difficulties with that, we construct a new hypergraph whose vertices and hyperedges are chosen in such a way that some property of this auxiliary hypergraph
+        is equivalent too or implies the thing we wanted to prove about \(G\). After proving that easier statement for the hypergraph we translate it back to \(G\) to prove our initial conjecture on G. Holds a lot of similarity to auxiliary functions in analysis.
     \subsection{Bridge}
-        A bridge is a specific edge in a graph G where if removing that edge from the graph results in a connected component being split into multiple smaller connected components and hence the total number of connected components increasing.
+        A bridge is a specific edge in a graph \(G\) where if removing that edge from the graph results in a connected component being split into multiple smaller connected components and hence the total number of connected components increasing.
     \subsection{Closed walks on a hypergraph}
         Similar to a closed walk for a graph, but then we walk from vertex to vertex along hyperedges (which, if we recall, connects multiple vertices together), we are allowed to use each hyperedge multiple times, just not right after eachother
     \subsection{Tranquil Hypergraphs}
@@ -114,17 +114,13 @@
     \subsection{Gallai-Witt theorem}
         Basically, no matter the given integers \(k,d\), no matter how the set \(\mathbb{Z}^d\) is colored with \(k\) colors, and no matter the finite set chosen \(T\subset\mathbb{Z}^d\), 
         we can always find a way to scale and translate T in such a way that the result is a specific subset of points of \(\mathbb{Z}^d\) that have the same color.
-    \subsection{}
-    \subsection{}
-    \subsection{}
-    \subsection{}
 
     We know from the paper that no-lonely colored graphs do not have a bounded chromatic number, but what about minimal cayley graphs?
 
 
-\section{New concepts}
-Stable/independent sets, Perfect matchings, Blanche Descartes/Tutte construction\\
-Go deeper into how this construction works/gain intuition\\
+\section{To learn concepts}
+Stable/independent sets, Perfect matchings, Blanche Descartes/Tutte construction
+Go deeper into how this construction works/gain intuition
 \begin{tikzpicture}[
   c1/.style={circle,draw,fill=red!40,minimum size=8mm,font=\small\bfseries},
   c2/.style={circle,draw,fill=green!40,minimum size=8mm,font=\small\bfseries},
@@ -157,8 +153,11 @@ Go deeper into how this construction works/gain intuition\\
 \node at (-2.3,1) {copies of $D_2$:};
 \end{tikzpicture}
 
+\section{Historical Development}
 
-\section{b}
+\section{The Disproof}
+
+\section{Conclusion and Discussion}
 
 \bibliography{Bibliography}
 \bibliographystyle{plain}
