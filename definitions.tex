@@ -1,0 +1,87 @@
+\documentclass[a4paper,10pt]{article}
+    \usepackage[utf8]{inputenc} 
+    \usepackage[english]{babel}
+    \usepackage[scale=.7]{geometry}
+    \usepackage{graphicx}
+    \usepackage{amsmath,amssymb,amsthm}
+    \usepackage{polynomial}
+    \usepackage{enumitem}
+    \usepackage{tikz}
+    \usetikzlibrary{calc}
+    \usepackage{hyperref}
+    
+    \theoremstyle{plain}
+    \newtheorem{theorem}{Theorem}[section]
+    \newtheorem{lemma}[theorem]{Lemma}
+    \newtheorem{proposition}[theorem]{Proposition}
+    \newtheorem{corollary}[theorem]{Corollary}
+    
+    \theoremstyle{definition}
+    \newtheorem{definition}[theorem]{Definition}
+    \newtheorem{example}[theorem]{Example}
+    
+    \theoremstyle{remark}
+    \newtheorem{remark}[theorem]{Remark}
+    
+    \title{Definitions}
+    
+    \author{Johan Voskamp}
+    
+    \date{\today}
+    
+    \begin{document}
+    \maketitle
+    
+    \section{}
+    
+    \begin{definition}[Chromatic Number]\label{def:chromatic}
+        The chromatic number of a graph \(G\) is the smallest possible number of colors necessary to color the vertices \(G\) if adjacent vertices can't have the same color.
+    \end{definition}
+    
+    \begin{definition}[No-lonely-color graphs]\label{def:lonely}
+    	A graph \(G\) is no-lonely-colored if there exists an edge-coloring such that 
+        \begin{itemize}
+            \item Every vertex's edges can only have at most two of the same color.
+            \item Every cycle contains no color exactly once.
+        \end{itemize}
+    \end{definition}
+
+    \begin{definition}[Cayley Graphs]\label{cayley}
+        Let \(G\) be a group, and let \(S
+        \subseteq G\), construct the graph \(\Gamma(G,S)\) as follows:
+        \begin{itemize}
+            \item Every \(g\in G\) is a vertex,
+            \item For every pair \(s\cdot g_1 = g_2\), where \(s\in S\) and \(g_1, g_2\in G\), set an edge between \(g_1\) and \(g_2\), disallowing identical edges.
+        \end{itemize}
+        \(\Gamma(G,S)\) is then called a Cayley Graph.
+    \end{definition}
+
+    \begin{definition}[Minimal Cayley Graphs]\label{min-cayley}
+        A Cayley Graph \(\Gamma(G,S)\) is called minimal when \(S\) is the smallest subset possible still generating the group \(G\).
+    \end{definition}
+
+    \begin{definition}[Multigraphs]\label{multigraph}
+        
+    \end{definition}
+
+    \begin{definition}[Hypergraphs]\label{hypergraph}
+        
+    \end{definition}
+
+    \begin{definition}[Bridges]\label{bridge}
+        
+    \end{definition}
+
+    \begin{definition}[Closed walks]\label{closed_walk}
+        
+    \end{definition}
+
+    \begin{definition}[Girth]\label{girth}
+        
+    \end{definition}
+
+    \begin{definition}[Tranquil Hypergraphs]\label{tranquil}
+        
+    \end{definition}
+    
+    \end{document}
