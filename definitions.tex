@@ -34,9 +34,7 @@
     
     \section{}
     
-    \begin{definition}[Chromatic Number]\label{def:chromatic}
-        The chromatic number of a graph \(G\) is the smallest possible number of colors necessary to color the vertices \(G\) if adjacent vertices can't have the same color.
-    \end{definition}
+   
     
     \begin{definition}[No-lonely-color graphs]\label{def:lonely}
     	A graph \(G\) is no-lonely-colored if there exists an edge-coloring such that 
@@ -48,40 +46,52 @@
 
     \begin{definition}[Cayley Graphs]\label{cayley}
         Let \(G\) be a group, and let \(S
-        \subseteq G\), construct the graph \(\Gamma(G,S)\) as follows:
+        \subseteq G\), construct the graph \(C(G,S)\) as follows:
         \begin{itemize}
             \item Every \(g\in G\) is a vertex,
             \item For every pair \(s\cdot g_1 = g_2\), where \(s\in S\) and \(g_1, g_2\in G\), set an edge between \(g_1\) and \(g_2\), disallowing identical edges.
         \end{itemize}
-        \(\Gamma(G,S)\) is then called a Cayley Graph.
+        \(C(G,S)\) is then called a Cayley Graph.
     \end{definition}
 
     \begin{definition}[Minimal Cayley Graphs]\label{min-cayley}
-        A Cayley Graph \(\Gamma(G,S)\) is called minimal when \(S\) is the smallest subset possible still generating the group \(G\).
+        A Cayley Graph \(C(G,S)\) is called minimal when \(S\) is the smallest possible subset still generating the group \(G\).
     \end{definition}
-
+    
+    \begin{definition}[Girth]\label{girth}
+        The Girth of a graph is the length of its shortest cycle, if no cycles exist the girth is set to be \(\infty\).
+    \end{definition}
+    
     \begin{definition}[Multigraphs]\label{multigraph}
-        
-    \end{definition}
-
-    \begin{definition}[Hypergraphs]\label{hypergraph}
-        
+        A Multigraph is a graph where it is allowed for two vertices to have multiple edges connecting each other.
     \end{definition}
 
     \begin{definition}[Bridges]\label{bridge}
-        
+        Let \(M\) be a Multigraph and \(e\) be an edge of that graph. If removing \(e\) from \(M\) results in a graph that has more connected components, we call \(e\) a bridge.
     \end{definition}
 
-    \begin{definition}[Closed walks]\label{closed_walk}
-        
+    \begin{definition}[Hypergraphs]\label{hypergraph}
+        Let \(V\) be a set of elements and let \(E\subset P(X)\). We call the collection
+        \((V,E),\) an (undirected) Hypergraph. The subset \(E\) is the collection of hyperedges of the Hypergraph.
     \end{definition}
 
-    \begin{definition}[Girth]\label{girth}
-        
+    \begin{definition}[Chromatic Number]\label{def:chromatic}
+        The chromatic number of a (hyper)graph \(G\) is the smallest possible number of colors necessary to color the vertices \(G\) if adjacent vertices can't have the same color.
     \end{definition}
 
-    \begin{definition}[Tranquil Hypergraphs]\label{tranquil}
-        
+    \begin{definition}[r-uniform Hypergraphs]\label{tranquil}
+        Let \((V, E)\) be a Hypergraph. If each Hyperedge of the Hypergraph contains exactly \(k\) elements, we call the Hypergraph \(k\)-uniform.
     \end{definition}
     
+    \begin{definition}[Tranquil Hypergraphs]\label{tranquil}
+        ~An \(r\)-uniform hypergraph is tranquil if after labeling all vertices (this must be possible) in each hyperedge with the same \(r\) labels, every closed walk in the hypergraph, when projected as a multigraph from label to label, is bridgeless.
+    \end{definition}
+    
+    Geassumeerde voorkennis:
+     \begin{itemize}
+         \item Grafentheorie
+         \item
+     \end{itemize}
     \end{document}
+
+         Do I need references for every single definition?
