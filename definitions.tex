@@ -48,14 +48,14 @@
         Let \(G\) be a group, and let \(S
         \subseteq G\), construct the graph \(C(G,S)\) as follows:
         \begin{itemize}
-            \item Every \(g\in G\) is a vertex,
-            \item For every pair \(s\cdot g_1 = g_2\), where \(s\in S\) and \(g_1, g_2\in G\), set an edge between \(g_1\) and \(g_2\), disallowing identical edges.
+            \item every \(g\in G\) is a vertex,
+            \item for every ordered pair \((g, s)\), where \(s\cdot g_1 = g_2\) with \(s\in S\) and \(g_1, g_2\in G\), set an edge between \(g_1\) and \(g_2\), disallowing identical edges.
         \end{itemize}
-        \(C(G,S)\) is then called a Cayley Graph.
+        The resulting object, \(C(G,S)\) is then called a Cayley Graph.
     \end{definition}
 
     \begin{definition}[Minimal Cayley Graphs]\label{min-cayley}
-        A Cayley Graph \(C(G,S)\) is called minimal when \(S\) is the smallest possible subset still generating the group \(G\).
+        A Cayley Graph \(C(G,S)\) is called minimal when \(S\) is a smallest possible subset still generating the group \(G\).
     \end{definition}
     
     \begin{definition}[Girth]\label{girth}
@@ -89,7 +89,7 @@
     
     Geassumeerde voorkennis:
      \begin{itemize}
-         \item Grafentheorie
+         \item grafentheorie
          \item
      \end{itemize}
     \end{document}
