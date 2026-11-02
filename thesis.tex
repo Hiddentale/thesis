@@ -9,10 +9,20 @@
 \usepackage{enumitem}
 \usepackage{todonotes}
 \usepackage{tikz}
+\usetikzlibrary{graphs, positioning}
+
+\tikzset{
+  vertex/.style = {circle, draw, fill=white, inner sep=0pt,
+                   minimum size=6mm, font=\small},
+  edge/.style   = {thick},
+  red v/.style  = {vertex, fill=red!35},
+  blue v/.style = {vertex, fill=blue!30},
+}
 \usetikzlibrary{calc}
 
 \numberwithin{equation}{section} 
 \newtheorem{theorem}[subsubsection]{Theorem}
+\newtheorem{conjecture}{Conjecture}
 \newtheorem{corollary}[subsection]{Corollary}
 \newtheorem{lemma}[subsection]{Lemma}
 \newtheorem{proposition}[subsection]{Proposition}
@@ -34,13 +44,19 @@
     In 1978 Babai conjectured that minimal Cayley graphs have a bounded chromatic number. In 1995 he changed his mind and conjectured the opposite.
 \end{abstract}
 \section{AI/Data usage}
-
+    "I want a circular graph in latex with 3 vertices connected in a circle by 3 edges, two of them are red, one of them is blue"
 \section{Introduction}
 \section{Preliminaries}
-    \begin{definition}[Chromatic number]\label{chromatic}
+\subsection{Standard notation for paper}
+\begin{definition}[Chromatic number]\label{chromatic}\cite{west}
         The smallest number of colors required to color the vertices of any graph \(G\), so that any adjacent vertices are never the same color, is called the chromatic number of  \(G\). Denoted as \(\chi(G)\).
     \end{definition}
-\subsection{Standard notation for paper}
+    \begin{definition}[Circuit]\label{circuit}\cite{west}
+        A \emph{circuit} is a closed walk that can't traverse the same edges twice.
+    \end{definition}
+    \begin{definition}[Cycle]\label{cycle}\cite{west}
+        A \emph{cycle} is a circuit that can't traverse the same vertices twice.
+    \end{definition}
 \subsection{Cayley graphs with small examples}
     \begin{definition}[Cayley Graphs]\label{cayley}
         Let \(G\) be a group, and let \(S\subseteq G\) be a generating set, construct the graph \(C(G,S)\) as follows:
@@ -74,33 +90,66 @@
         \[\{1, 2, 3\}, \text{\ then\ } 2\in\langle 1\rangle,\]
         hence \(S\) is not a quasi-irreducible generating set of \(\mathbb{Z}\).
     \end{counterexample}
-    \begin{definition}[No pied circuit graph]\label{no-pied}
-        A graph \(G\) is a \emph{no pied circuit} if there exists an edge-coloring such that 
+    \begin{definition}[No-pied-circuit graph]\label{no-pied}
+        A graph \(G\) is a \emph{no-pied-circuit} if there exists an edge-coloring such that 
         \begin{itemize}
-            \item Every vertex's edges can only have at most two of the same color,
-            \item Each circuit contains at least two edges of the same color.
+            \item every vertex's edges can only have at most two of the same color,
+            \item each circuit contains at least two edges of the same color.
         \end{itemize}
     \end{definition}
     \begin{example}
+        \todo{figure out example}
     \end{example}
     \begin{counterexample}
+        \leavevmode\par
+        \begin{center}
+            \begin{tikzpicture}
+                \foreach \i in {1,2,3}
+                    \node[vertex] (v\i) at ({90 + 120*(\i-1)} : 1.3cm) {\i};
+
+                \foreach \i/\j/\c in {1/2/red, 2/3/red, 3/1/blue}
+                    \draw[edge, color=\c] (v\i) -- (v\j);
+            \end{tikzpicture}
+        \end{center}
+        Observe that every circuit only contains the color blue once, hence this graph is \emph{not} a no-pied-circuit.
     \end{counterexample}
     \begin{definition}[No-lonely-color graphs]\label{def:lonely}
     	A graph \(G\) is no-lonely-colored if there exists an edge-coloring such that 
         \begin{itemize}
-            \item Every vertex's edges can only have at most two of the same color,
-            \item Every circuit(cycle?) contains no color exactly once.
+            \item every vertex's edges can only have at most two of the same color,
+            \item every circuit contains no color exactly once.
         \end{itemize}
     \end{definition}
     \begin{example}
+        
     \end{example}
     \begin{counterexample}
+        \todo{figure out counterexample}
     \end{counterexample}
+    \begin{proposition}
+        The definitions of no pied circuit graphs and no-lonely-color graphs can interchange circuit with cycle and nothing changes.\todo{make rigorous}
+    \end{proposition}
+    \begin{proof}
+        \todo{write proof}
+    \end{proof}
+    \begin{proposition}
+        no-lonely-color graph implies no-pied-circuit graph \todo{make rigorous}
+    \end{proposition}
+    \begin{proof}
+        \todo{write proof}
+    \end{proof}
     No pied circuit graphs arise from quasi-irreducible generating sets. Also every no lonely colored graph is a no pied circuit graph. 
     Babai then conjectured that pied-circuits have a bounded chromatic number, which would mean every no lonely colored graph would also have bounded chromatic number.
 \subsection{Forbidden subgraphs}
 \subsection{Babai's 1978 conjectures}
+    \begin{conjecture}
+        The chromatic number of any no-pied-circuit graph is bounded.
+    \end{conjecture}
+    \begin{conjecture}
+        
+    \end{conjecture}
 Both conjecture 2.2 and 3.5 from Babai's 1978 paper
+
 \subsection{The 1995 counter-conjecture}
 \section{Evidence in both directions}
 \subsection{Abelian groups are 3-colorable}
@@ -109,7 +158,7 @@ Both conjecture 2.2 and 3.5 from Babai's 1978 paper
 \section{Necessary tools}
 \section{No-lonely-color graphs of large chromatic number}
 \subsection{Tranquil hypergraphs}
-\subsection{Tranquility of \(C_d\)}
+\subsection{Tranquility of \texorpdfstring{\(C_d\)}{C\_d}}
 \subsection{The construction}
 \subsection{The proof}
 \section{Minimal Cayley graphs of large chromatic number}
