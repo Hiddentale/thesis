@@ -10,6 +10,7 @@
 \usepackage{todonotes}
 \usepackage{tikz}
 \usetikzlibrary{graphs, positioning}
+\usetikzlibrary{arrows.meta}
 
 \tikzset{
   vertex/.style = {circle, draw, fill=white, inner sep=0pt,
@@ -44,6 +45,7 @@
     In 1978 Babai conjectured that minimal Cayley graphs have a bounded chromatic number. In 1995 he changed his mind and conjectured the opposite.
 \end{abstract}
 \section{AI/Data usage}
+    I used Claude Opus 5.5 to generate the initial layouts of my latex tikzpictures. Through a prompt like:
     "I want a circular graph in latex with 3 vertices connected in a circle by 3 edges, two of them are red, one of them is blue"
 \section{Introduction}
 \section{Preliminaries}
@@ -66,6 +68,53 @@
         \end{itemize}
         The resulting object, \(C(G,S)\), is then called a Cayley Graph.
     \end{definition}
+    \begin{example}
+        \leavevmode\par
+        \begin{center}
+            \begin{tikzpicture}[
+            vertex/.style = {circle, draw, thick, minimum size=10mm},
+            gen/.style    = {thick, black},
+            lbl/.style    = {auto, font=\small, text=red!70!black}
+            ]
+                \node[vertex] (v0) at ( 90:2cm) {$\bar{0}$};
+                \node[vertex] (v1) at (-30:2cm) {$\bar{1}$};
+                \node[vertex] (v2) at (210:2cm) {$\bar{2}$};
+                \draw[gen] (v0) to[bend left=20] node[lbl] {$\bar{1}$} (v1);
+                \draw[gen] (v1) to[bend left=20] node[lbl] {$\bar{1}$} (v2);
+                \draw[gen] (v2) to[bend left=20] node[lbl] {$\bar{1}$} (v0);
+            \end{tikzpicture}
+        \end{center}
+        Let \(G =\mathbb{Z}/3\mathbb{Z}\) and \(S =\{\bar{1}
+        \}\subseteq G\). Then we have a Cayley graph of this cyclic group.\todo{improve this explanation}          
+    \end{example}
+    \begin{example}
+        \leavevmode\par
+        \begin{center}
+            \begin{tikzpicture}[
+            vertex/.style = {circle, draw, thick, minimum size=10mm, inner sep=1pt},
+            rgen/.style   = {thick, black},
+            sgen/.style   = {thick, dashed, blue!70!black}
+            ]
+                \node[vertex] (o0) at ( 45:3cm) {$e$};
+                \node[vertex] (o1) at (135:3cm) {$r$};
+                \node[vertex] (o2) at (225:3cm) {$r^2$};
+                \node[vertex] (o3) at (315:3cm) {$r^3$};
+                \node[vertex] (i0) at ( 45:1.3cm) {$s$};
+                \node[vertex] (i1) at (135:1.3cm) {$rs$};
+                \node[vertex] (i2) at (225:1.3cm) {$r^2 s$};
+                \node[vertex] (i3) at (315:1.3cm) {$r^3 s$};
+
+                \foreach \k in {0,...,3} {
+                \pgfmathtruncatemacro{\nk}{mod(\k+1,4)}
+                \draw[rgen] (o\k)  -- (o\nk);
+                \draw[rgen] (i\nk) -- (i\k);
+                \draw[sgen] (o\k)  -- (i\k);
+                }
+            \end{tikzpicture}
+        \end{center}
+        Let \(G=D_4\) and \(S =\{s, r
+        \}\subseteq G\). Then we have a Cayley graph of this dihedral group.\todo{improve this explanation}     
+    \end{example}
 \subsection{Minimal generating sets}
 \subsection{Hypergraph coloring}
 \section{Babai's question, 1978-1995}
@@ -93,12 +142,22 @@
     \begin{definition}[No-pied-circuit graph]\label{no-pied}
         A graph \(G\) is a \emph{no-pied-circuit} if there exists an edge-coloring such that 
         \begin{itemize}
-            \item every vertex's edges can only have at most two of the same color,
+            \item every vertex can only have at most two edges of the same color,\todo{figure out beter definition}
             \item each circuit contains at least two edges of the same color.
         \end{itemize}
     \end{definition}
-    \begin{example}
-        \todo{figure out example}
+    \begin{example}\label{no-pied-example}
+        \leavevmode\par
+        \begin{center}
+            \begin{tikzpicture}
+                \foreach \i in {1,2,3}
+                    \node[vertex] (v\i) at ({90 + 120*(\i-1)} : 1.3cm) {\i};
+
+                \foreach \i/\j/\c in {1/2/blue, 2/3/blue, 3/1/blue}
+                    \draw[edge, color=\c] (v\i) -- (v\j);
+            \end{tikzpicture}
+        \end{center}
+        Note that, every vertex has 2 edges of the color blue, and each circuit has 3 edges of the color blue.
     \end{example}
     \begin{counterexample}
         \leavevmode\par
@@ -107,37 +166,82 @@
                 \foreach \i in {1,2,3}
                     \node[vertex] (v\i) at ({90 + 120*(\i-1)} : 1.3cm) {\i};
 
-                \foreach \i/\j/\c in {1/2/red, 2/3/red, 3/1/blue}
+                \foreach \i/\j/\c in {1/2/red, 2/3/blue, 3/1/blue}
                     \draw[edge, color=\c] (v\i) -- (v\j);
             \end{tikzpicture}
         \end{center}
-        Observe that every circuit only contains the color blue once, hence this graph is \emph{not} a no-pied-circuit.
+        Observe that every circuit only contains the color red once, hence this graph is \emph{not} a no-pied-circuit.
     \end{counterexample}
     \begin{definition}[No-lonely-color graphs]\label{def:lonely}
     	A graph \(G\) is no-lonely-colored if there exists an edge-coloring such that 
         \begin{itemize}
-            \item every vertex's edges can only have at most two of the same color,
-            \item every circuit contains no color exactly once.
+            \item every vertex can only have at most two edges of the same color,\todo{figure out beter definition}
+            \item no circuit exists with a color appearing once.
         \end{itemize}
     \end{definition}
-    \begin{example}
-        
-    \end{example}
+    \begin{proposition}
+        Every no-lonely-color graph is a no-pied-circuit graph.
+    \end{proposition}
+    \begin{proof}
+        If no circuit exists with a color appearing once, then every circuit contains at least two edges of the same color.
+    \end{proof}
+    Hence the example given for a no-pied-circuit graph (\ref{no-pied-example}) is also a valid no-lonely-color graph. The converse is not true.
     \begin{counterexample}
-        \todo{figure out counterexample}
+        \leavevmode\par
+        \begin{center}
+            \begin{tikzpicture}[
+            vertex/.style = {circle, draw, thick, minimum size=5mm},
+            gen/.style    = {thick, black},
+            lbl/.style    = {auto, font=\small, text=red!70!black}
+            ]
+            
+                \node[vertex] (1) at (90:2)  {$1$};
+                \node[vertex] (2) at (210:2) {$2$};
+                \node[vertex] (3) at (330:2) {$3$};
+                \node[vertex] (4) at (0,0)   {$4$};
+
+                \path (1) edge[blue]              (2);
+                \path (3) edge[blue]              (4);
+                \path (1) edge[blue]             (3);
+                \path (2) edge[blue]             (4);
+                \path (1) edge[blue]   (4);
+                \path (2) edge[blue]   (3);
+            \end{tikzpicture}
+        \end{center}
+        Note that no circuit existing with a color appearing once means, that all 3-length circuits, which are triangles, are monochromatic. Hence for the complete graph on 4 vertices, \(K_4\), we can only color it in the above depicted way. Which is not a valid no-lonely-color graph since each vertex has 3 edges of the same color connected to it.
+        \leavevmode\par
+        \begin{center}
+            \begin{tikzpicture}[
+            vertex/.style = {circle, draw, thick, minimum size=5mm},
+            gen/.style    = {thick, black},
+            lbl/.style    = {auto, font=\small, text=red!70!black}
+            ]
+            
+                \node[vertex] (1) at (90:2)  {$1$};
+                \node[vertex] (2) at (210:2) {$2$};
+                \node[vertex] (3) at (330:2) {$3$};
+                \node[vertex] (4) at (0,0)   {$4$};
+
+                \path (1) edge[red]              (2);
+                \path (3) edge[red]              (4);
+                \path (1) edge[blue]             (3);
+                \path (2) edge[blue]             (4);
+                \path (1) edge[blue]   (4);
+                \path (2) edge[red]   (3);
+            \end{tikzpicture}
+        \end{center}
+        Each triangle in this graph satisfies both requirements for a circuit in a no-pied-circuit graph. Furthermore, there are, excluding symmetries, three length 4 circuits on this graph:
+        \[12341,\ \ 12431,\ \ 13241,\]
+        which all have at least two edges of the same color. Hence, this is an example of a graph that is no-pied-circuit but \emph{not} no-lonely-color.
     \end{counterexample}
     \begin{proposition}
-        The definitions of no pied circuit graphs and no-lonely-color graphs can interchange circuit with cycle and nothing changes.\todo{make rigorous}
+        Replacing circuit with cycle in the definitions of no pied circuit graphs and no-lonely-color graphs gives equivalent definitions.\todo{make rigorous}
     \end{proposition}
     \begin{proof}
-        \todo{write proof}
+        Note that every cycle is already a circuit. So we only have to prove that circuits are the same as cycles in the above definitions.
+        \todo{finish proof}
     \end{proof}
-    \begin{proposition}
-        no-lonely-color graph implies no-pied-circuit graph \todo{make rigorous}
-    \end{proposition}
-    \begin{proof}
-        \todo{write proof}
-    \end{proof}
+
     No pied circuit graphs arise from quasi-irreducible generating sets. Also every no lonely colored graph is a no pied circuit graph. 
     Babai then conjectured that pied-circuits have a bounded chromatic number, which would mean every no lonely colored graph would also have bounded chromatic number.
 \subsection{Forbidden subgraphs}
