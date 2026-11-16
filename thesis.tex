@@ -160,7 +160,7 @@
             \item every vertex can only have at most two edges of the same color,
             \item no circuit is pied,
         \end{itemize}
-        then we call \(G\) a no-pied circuit graph.
+        then we call \(G\) a no-pied circuit graph.\todo{rainbow}
     \end{definition}
     Observe that only \emph{one} edge-coloring has to exist for this definition to be satisfied. Furthermore, each circuit can have thousands of different colors, the only requirement is that \emph{one} of those colors appears twice.
     \begin{example}\label{no-pied-example}
@@ -257,24 +257,55 @@
     \end{proposition}
     \begin{proof}
         Note that every cycle is already a circuit. So we only have to prove that circuits are the same as cycles in the above definitions.
-        \todo{finish proof}
+        Let \(G\) be a graph in which every cycle is \emph{no-pied}, and let \(c\) be a circuit that is \emph{pied}. Since cycles are subsets of circuits, our circuit must consist of a combination of any of these \emph{no-pied} cycles, or itself is one of these cycles. For both of these options we get a contradiction, since our circuit, which consists of multiple cycles, has repeated colors, which \emph{pied}-ness disallows.\todo{make rigorous}
+    \end{proof}
+    Note that No-pied-circuit graphs arise from Quasi-irreducible generating sets.
+    \begin{proposition}
+        Let \(G\) be a group and let \(S\subseteq G\) be a Quasi-irreducible generating set. Then \((G,S)\) is a No-pied-circuit graph.
+    \end{proposition}
+    \begin{proof}
+        
     \end{proof}
 
     No pied circuit graphs arise from quasi-irreducible generating sets. Also every no lonely colored graph is a no pied circuit graph. 
     Babai then conjectured that pied-circuits have a bounded chromatic number, which would mean every no lonely colored graph would also have bounded chromatic number.
 \subsection{Forbidden subgraphs}
+    \begin{lemma}
+        Any no-pied-circuit graph can't contain \(K_{5,17}\) as a subgraph.
+    \end{lemma}
+    \begin{proof}
+        
+    \end{proof}
+    \begin{lemma}
+        Any no-lonely-color graph can't contain \(K_{3,5}\) as a subgraph.
+    \end{lemma}
+     \begin{proof}
+        
+    \end{proof}
 \subsection{Babai's 1978 conjectures}
+    Given the results from the Forbidden subgraphs,  Babai 
     \begin{conjecture}
         The chromatic number of any no-pied-circuit graph, and hence also no-lonely color graph, is bounded.
     \end{conjecture}
-    \begin{conjecture}\todo{}
-        Conjecture 2.2 from Babai's 1978 paper
+    He also conjectured a stronger statement.
+    \begin{conjecture}
+        The chromatic number of any minimal Cayley graph is bounded.
     \end{conjecture}
 
-\subsection{The 1995 counter-conjecture}\todo{}
+\subsection{The 1995 counter-conjecture}
+    Page 27 of \(babai\_has\_doubts.pdf\) at the bottom just above Theorem 3.18\todo{}
 \section{Evidence in both directions}
 \subsection{Abelian groups are 3-colorable}
+    \begin{theorem}
+        Let \(G\) be  a solvable group. Then it's Cayley Graph has a chromatic number of at most 3.
+    \end{theorem}
+    \begin{proof}
+        (At the end of page 18 of 1974's Babai's paper)
+    \end{proof}
 \subsection{More positive results}
+    \begin{theorem}[Erdos and Hajnal]
+        The chromatic number of a Cayley graph is at most countably infinite.
+    \end{theorem}
 \subsection{Negative results}
 \section{Necessary tools}
 \section{No-lonely-color graphs of large chromatic number}
